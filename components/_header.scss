@@ -1,0 +1,139 @@
+.header{
+    background-color: $clr-primary;
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+    }
+    &__menu{
+        display: flex;
+        flex-direction: column;
+        span{
+            height: 0.5rem;
+            width: 3rem;
+            background-color: $clr-light;
+            border-radius:2rem ;
+            border: none;
+            &:nth-child(2){
+                margin: 0.3rem 0;
+            }
+        }
+    }
+}
+.headerBar{
+    z-index: 999;
+    position: absolute;
+    right: -30rem;
+    top: 0;
+    width: 30rem;
+    height: 100vh;
+    background-color: $clr-light;
+    transition: 0.5s ease;
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 5rem 2rem;
+    }
+    
+    &__logo{
+        text-align: center;
+        margin: 0 0;
+    }
+    &__eks{
+        right: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        align-items: end;
+        
+        .line{  
+            height: 0.3rem;
+            width: 2.5rem;
+            background-color: $clr-gray;
+            border-radius:2rem ;
+            border: none;
+            
+            &:first-child{
+                transform: rotate(-45deg);
+            }
+            &:last-child{
+                transform: rotate(45deg);
+            }
+        }
+        
+    }
+    &__nav{
+        ul{
+            width: 100%;
+            margin: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            
+            li{
+                padding: 1rem;
+                border-bottom: 1px solid #ddd;
+                transition: 0.5s ease;
+                &:hover{
+                    color: $clr-secondary;
+                    background-color: $clr-accent;
+                    transition: 0.5s ease;
+                }
+                ul{
+                    display: none;
+                    background-color: $clr-gray;
+                    li {
+                        background-color: $clr-accent;
+                        a:hover{
+                            color: $clr-secondary;
+                            transition: 0.5s ease-in-out;
+                            
+                        }
+                    }
+                    &.open{
+                        display: unset;
+                        background-color: $clr-gray;
+                        
+                    }
+                }
+                .title{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+         
+            .project{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+        }
+    }
+    &.open{
+        right: 0;
+        transition: 0.5s ease;
+    }
+   
+}
+.overlay{
+    position: absolute;
+    top:0;
+    background-color: black;
+    z-index: 99;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.5;
+    display: none;
+    left: 0;
+    
+    &.active{
+      display: unset;
+      transition: 0.5s ease;
+    }
+  }
