@@ -1,5 +1,9 @@
+
 .header{
     background-color: $clr-primary;
+    width: 100%;
+    top: 17rem;
+    z-index: 999;
     &__wrapper{
         display: flex;
         justify-content: space-between;
@@ -20,12 +24,38 @@
             }
         }
     }
+    @include mediaQuery($break-md){
+        display: none;
+    }
 }
 .headerBar{
-    z-index: 999;
-    position: absolute;
+    &.open{
+        right: 0;
+        transition: 0.5s ease;
+        top: 0;
+    }
+    @include mediaQuery($break-md){
+        right: 0;
+        top: 10rem;
+        position: fixed;
+        width: 100vw;
+        height: 10rem;
+        transition: 0.5s ease;
+        transition-duration: 1100ms;
+        &.bg{
+            color: $clr-light;
+            opacity: 0.8;
+            top: 0;
+            background: black;
+            transition: 0.5s ease;
+            transition-duration: 1100ms;
+        }
+        
+    }
+    z-index: 99999;
+    
+    position: fixed;
     right: -30rem;
-    top: 0;
     width: 30rem;
     height: 100vh;
     background-color: $clr-light;
@@ -33,13 +63,26 @@
     &__wrapper{
         display: flex;
         flex-direction: column;
+        
         gap: 2rem;
         padding: 5rem 2rem;
+        @include mediaQuery($break-md){
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 10rem;
+            padding: 0;
+            overflow: hidden;
+            
+        }
     }
-    
     &__logo{
         text-align: center;
         margin: 0 0;
+        @include mediaQuery($break-md){
+            text-align: left;
+        }
     }
     &__eks{
         right: 0;
@@ -48,7 +91,6 @@
         flex-direction: column;
         margin-bottom: 0;
         align-items: end;
-        
         .line{  
             height: 0.3rem;
             width: 2.5rem;
@@ -63,18 +105,27 @@
                 transform: rotate(45deg);
             }
         }
-        
+        @include mediaQuery($break-md){
+            display: none;
+        }
     }
     &__nav{
-        ul{
+        ul{ 
+            @include mediaQuery($break-md){
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;  
+                align-items: center; 
+            } 
             width: 100%;
-            margin: 3rem 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             gap: 1rem;
-            
-            li{
+            height: 10rem;
+            li { 
+                font-weight: 600;
                 padding: 1rem;
                 border-bottom: 1px solid #ddd;
                 transition: 0.5s ease;
@@ -83,57 +134,184 @@
                     background-color: $clr-accent;
                     transition: 0.5s ease;
                 }
+                @include mediaQuery($break-md){
+                    border: none;
+                    max-height: 5rem;
+                    overflow: hidden;
+                    &:hover{
+                        color: $clr-primary;
+                        background-color: unset;
+                        transition: 0.5s ease;
+                        ul{
+                            top: 10rem;
+                            opacity: 1;
+                            max-height: 200rem;
+
+                        }
+                    }
+                }
                 ul{
-                    display: none;
-                    background-color: $clr-gray;
+                    height: auto;
+                    max-height: 0px;
+                    overflow: hidden;
+                    background-color: $clr-accent;
                     li {
-                        background-color: $clr-accent;
+                        left: 0;
                         a:hover{
-                            color: $clr-secondary;
-                            transition: 0.5s ease-in-out;
-                            
+                            color: $clr-secondary;  
+                            @include mediaQuery($break-md){
+                                color: $clr-primary;
+                                transition: 0.5s ease-in-out;
+                                
+                            }
                         }
                     }
                     &.open{
-                        display: unset;
-                        background-color: $clr-gray;
+                        max-height: 200rem;
+                        transition-duration: 1100ms;
                         
+                    }
+                    @include mediaQuery($break-md){
+                        max-height: 0px;
+                        transition-duration: 1100ms;
+                        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                        opacity: 0;
+                        position: absolute;
+                        display: flex;
+                        top:13rem;
+                        flex-direction: column;
+                        transition: 0.5s  ease-in-out;
+                        width: 20rem;
+                        background: $clr-light;
+                        gap: 0.5rem;
+                        li {
+                            width: 100%;
+                        }
+                        li:hover{
+                            margin-left: 5rem;
+                            transition: 0.2s ease;
+                        }
+                        li a:hover{
+                            color: $clr-primary; 
+                        }
                     }
                 }
                 .title{
+                    @include mediaQuery($break-md){
+                        border: none;
+                        &:hover{
+                            color: $clr-primary;
+                            transition: 0.5s ease; 
+                        }
+                    }
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    
+                    @include mediaQuery($break-md){
+                        .project{
+                            ul{
+                                max-height: 0;
+                                opacity: 0;
+                            }
+                        }
+                    }
+                    @include mediaQuery($break-md){
+                        ul{
+                            
+                        } 
+                    }
+                }
+            }
+                .icons{
+                    display: none;
+                    i{
+                        margin: 1rem;
+                        color: $clr-primary;
+                        
+                    }
+                @include mediaQuery($break-md){
+                    display: unset;
+                }
+                
+                .project{
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
                 }
-            }
-         
-            .project{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+                @include mediaQuery($break-md){
+                    align-items: center;
+                }
+            }  
             }
             
-        }
     }
-    &.open{
-        right: 0;
-        transition: 0.5s ease;
-    }
-   
 }
 .overlay{
     position: absolute;
     top:0;
     background-color: black;
     z-index: 99;
-    height: 100vh;
+    height: 10000rem;
     width: 100vw;
     opacity: 0.5;
     display: none;
     left: 0;
-    
     &.active{
       display: unset;
       transition: 0.5s ease;
     }
   }
+.header__topbar{
+    
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    &__address{
+        @include mediaQuery($break-md){
+           position: static;
+        }
+        width: 100%;
+        
+        z-index: 999;
+        background-color:$clr-primary ;
+        padding: 3rem 0 1rem 0;
+        text-align: center;
+        ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+            a{
+                color: $clr-light;
+            }
+        }
+    }
+    &__socials{
+        ul{
+            background-color:$clr-primary ;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            i{
+                color: $clr-light;
+                font-size: 15px;
+            }
+        }
+    }
+    &__logo{
+        top:8.5rem;
+        z-index: 9999;
+        background-color: $clr-light;
+        padding: 3rem 0 3rem 0;
+        
+        width: 100%;
+        @include mediaQuery($break-md){
+            display: none;
+        }
+        
+    }
+}

@@ -13,11 +13,19 @@ eks.addEventListener('click', ()=>{
     overlay.classList.remove('active')
 })
 
-// dropdown
-
 const ddowns = document.querySelectorAll('.title, .project');
 ddowns.forEach((ddown) => {
     ddown.addEventListener('click', () => {
         ddown.nextElementSibling.classList.toggle("open"); 
     });
 });
+
+window.addEventListener("scroll", () =>   {
+    console.log(scrollY);
+    if ((scrollY) >= 90 ) {
+      headerBar.classList.add("bg");
+    } else {
+      headerBar.classList.remove("bg");
+    }
+  });
+
